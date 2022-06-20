@@ -21,12 +21,12 @@ router.get('/',async (req, res) => {
 // POST --> Crear
 router.post(
   '/',
-  controlValidar(crearAutoSchema, 'params'),
+  controlValidar(crearAutoSchema, 'body'),
   async (req, res) => {
     try {
       const body = await req.body;
       servicio.create(body);
-      res.status(201).json({
+      res.status(200).json({
         mensaje: 'Auto registrado con exito',
         datos: body,
       });

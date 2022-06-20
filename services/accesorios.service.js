@@ -1,42 +1,12 @@
-const faker = require("faker")
+const boom = require("@hapi/boom");
+const crypto = require("crypto");
 
 class AccesorioService{
   constructor(){
-    this.accesorios=[{
-      id: faker.datatype.uuid(),
-      nombre: "Reproductor",
-      imagen: "https://cdn.autoteiledirekt.de/thumb?id=15750846&m=0&n=0&lng=es&rev=94077826",
-      precio: 2100
-    },
-    {
-      id: faker.datatype.uuid(),
-      nombre: "Tapabucos",
-      imagen: "https://media.autoteiledirekt.de/360_photos/16368508/preview.jpg",
-    precio: 2680
-    },
-    {
-      id: faker.datatype.uuid(),
-      nombre: "Cubre Asientos",
-      imagen: "https://cdn.autoteiledirekt.de/thumb?id=13626718&m=0&n=0&lng=es&rev=94077826",
-      precio: 280
-    }
-  ]
-    //this.GenerarDatos();
+   
   }
 
-  GenerarDatos() {
-    const size = 10;
-    for (let index = 0; index < size; index++) {
-      this.accesorios.push({
-        id: faker.datatype.uuid(),
-        nombre: faker.commerce.productName(),
-        precio: parseInt(faker.commerce.price()),
-        imagen: faker.image.imageUrl()
-      });
-    }
-  }
-
-  create(accesorio) {
+  async create(accesorio) {
     accesorio.id = faker.datatype.uuid();
     this.accesorios.push(accesorio);
   }
