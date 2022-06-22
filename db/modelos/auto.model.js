@@ -23,18 +23,24 @@ const AutoSchema = {
   concesionarioid: {
     type: DataTypes.UUID,
     field: 'concesionario_id',
-    allowNull: false,
+    allowNull: true,
     references:{
       model: 'concesionario'
-    }}
+    }
+  }
 };
-
 class Auto extends Model {
   static associate(models){
     this.belongsTo(models.concesionario, {
       as: 'concesionario'
-  })
+    })
   }
+  static associate(models){
+    this.hasMany(models.cotizacion, {
+      foreignKey: 'autoId'
+    });
+  }
+
   static config(sequelize){
     return {
       sequelize,

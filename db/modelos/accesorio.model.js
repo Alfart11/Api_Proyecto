@@ -23,17 +23,18 @@ const AccesorioSchema = {
   concesionarioid: {
     type: DataTypes.UUID,
     field: 'concesionario_id',
-    allowNull: false,
+    allowNull: true,
     references:{
       model: 'concesionario'
-    }}
+    }
+  }
 };
 
 class Accesorio extends Model {
   static associate(models){
     this.belongsTo(models.concesionario, {
       as: 'concesionario'
-  })
+    })
   }
 
   static config(sequelize){

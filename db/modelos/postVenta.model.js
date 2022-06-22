@@ -10,24 +10,24 @@ const PostventaSchema = {
   vehiculoAntiguoid: {
     type: DataTypes.UUID,
     field: 'vehiculo_antiguo_id',
-    allowNull: false,
+    allowNull: true,
     references:{
       model: 'vehiculo_antiguo'
     }},
     clienteid: {
       type: DataTypes.UUID,
       field: 'cliente_id',
-      allowNull: false,
+      allowNull: true,
       references:{
         model: 'cliente'
-      }},
+    }},
       concesionarioid: {
         type: DataTypes.UUID,
         field: 'concesionario_id',
-        allowNull: false,
+        allowNull: true,
         references:{
           model: 'concesionario'
-        }}
+      }}
 };
 
 class Postventa extends Model {
@@ -35,17 +35,18 @@ class Postventa extends Model {
     this.belongsTo(models.vehiculo_antiguo, {
       as: 'vehiculo_antiguo'
   });
-}
-static associate(models){
-  this.belongsTo(models.cliente, {
-    as: 'cliente'
-});
-}
-static associate(models){
-  this.belongsTo(models.concesionario, {
-    as: 'concesionario'
-});
-}
+  }
+  static associate(models){
+    this.belongsTo(models.cliente, {
+      as: 'cliente'
+    });
+  }
+  static associate(models){
+    this.belongsTo(models.concesionario, {
+      as: 'concesionario'
+    });
+  }
+
   static config(sequelize){
     return {
       sequelize,

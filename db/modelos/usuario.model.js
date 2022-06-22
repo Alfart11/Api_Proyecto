@@ -20,18 +20,31 @@ const UsuarioSchema = {
   clienteId: {
     type: DataTypes.UUID,
     field: 'cliente_id',
-    allowNull: false,
+    allowNull: true,
     references: {
       model: 'cliente'
     }
   },
+  administradorId: {
+    type: DataTypes.UUID,
+    field: 'administrador_id',
+    allowNull: true,
+    references: {
+      model: 'administrador'
+    }
+  }
 };
 
 class Usuario extends Model {
   static associate(models){
     this.belongsTo(models.cliente, {
       as: 'cliente'
-    })
+    });
+  }
+  static associate(models){
+    this.belongsTo(models.administrador, {
+      as: 'administrador'
+    });
   }
 
   static config(sequelize){
